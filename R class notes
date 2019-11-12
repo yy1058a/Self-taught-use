@@ -445,3 +445,39 @@ y<-tribble(
 x%>%
   inner_join(y,by="key")  #丢弃两个表格都没有的key值
 
+—————————————————————————————————
+
+#chapter11
+install.packages("stringr")
+library(stringr)
+'abc'  #字符串
+c('abc')  #常储存在向量中
+x<-c('two','four','six','eight')
+x
+writeLines(x)  #导出没有引号的字符串
+
+#想要导出”(双引号的情况)：
+#方法一：使用相同符号的时候
+y<-"\""
+y
+writeLines(y)
+#方法二：使用不同的符号
+z<-'"'
+z
+writeLines(z)
+
+#输出\符号的方法(❀这好像是叫转译符)
+x<-c("\"",'"',"\\")  #输出\要用两个\\，因为防止单个\会直接发挥作用。
+x
+writeLines(x)
+
+————————————————————————————————————————————
+#字符串长度
+str_length('The show starts now')
+str_length(c('maine','iowa', NA))  #NA值依旧会返回
+
+#combineing strings 合并字符串,或加入分隔符合并
+str_c('a','b','c')
+str_c("123",'45',sep=";")
+
+
