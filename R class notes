@@ -495,4 +495,54 @@ x<-c("georgia","maine","texas")
 str_sub(x,1,1)<-str_to_upper(str_sub(x,1,1)) #转换大写
 x
 
+_____________________________________________
+
+x<-c("DENVER","PRLANDO","HOUSTON","CHICAGO","DOVER")
+str_view(x,"DE") 
+str_view(x,"O$")  #金钱符号表示以什么为结尾
+str_view(x,"^H")  #^符号表示以什么为开头
+str_view(x,"^HOUSTON$")
+str_view(x,".O.")  #查找符合 .O. 格式的字符，用.点来做未知填充
+str_view(words, "^[aeuioy].*[^aeuioy]$", match = T) #元音开头辅音结尾 .*表示中间个数不限
+#"[aeuioy]元音 [^aeuioy]辅音(除了元音)
+str_view(c("abc","a.c","bef"),"a\\.c") #想要匹配“.”需要使用“\\.”
+str_subset(words,"tion$|ing$" ) #选择tion或者ing结尾的
+
+writeLines("a\\b")
+writeLines("a\\\\b")  #匹配一个“\”要使用“\\”
+
+str_view("a\\b","a\\\\b")  #写在代码中的都是转译了符号的模式
+                          #只有writeLines()的输出结果是纯文本
+
+writeLines("\"'\\")  #❀使用\转译单双引号,另外文本也要前后加双引号
+
+stringr::words
+str_view(stringr::words,"^k",match = TRUE) #match后缀，只看符合要求
+str_view(stringr::words,"^.....$",match = TRUE) #长度选择
+str_view(stringr::words,"^[the]",match = TRUE) #选择t.h,e其中之一开头x
+
+x<-c("Apple","banana","pear")
+str_detect(x,'e')  #detect发现有e的并返回T/F
+sum(str_detect(words,"t$"))
+str_subset(words,"[ux]$")
+-------------------------------------
+library(tidyverse)
+data1<-c("East","West","East","North","North","East","West","West","West")
+print(data1)
+print(is.factor(data1))
+factor_data1<-factor(data1)
+print(is.factor(factor_data1))
+
+x1<-c("Dec","Apr","Jan","Mar")
+month_levels<-c("Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec")
+y1<-factor(x1,levels = month_levels)
+y1
+sort(x1)
+
+gss_cat
+gss_cat%>%
+  count(race)
+
+ggplot(gss_cat,aes(race))+
+  geom_bar()
 
